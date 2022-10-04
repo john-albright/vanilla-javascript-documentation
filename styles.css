@@ -1,0 +1,50 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+#navbar {
+  height: 100%;
+  width: 30%;
+  position: fixed;
+  padding: 0;
+  margin: 0;
+  top: 0;
+  left: 0;
+  border: none;
+}
+
+#navbar a, #navbar header {
+  padding: 40px 10px;
+}
+
+#navbar a {
+  display: block;
+  text-decoration: none;
+  color: black;
+}
+
+#navbar a:hover {
+  color: gray;
+}
+
+#main-doc {
+  position: absolute;
+  width: 65%;
+  padding: 5px;
+  top: 0;
+  left: 31%;
+  border: none;
+}
+
+header {
+  font-size: 40px;
+}
+
+.block-code {
+  display: block;
+  padding-left: 10px;
+}
