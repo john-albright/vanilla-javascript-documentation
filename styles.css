@@ -1,27 +1,59 @@
+:root {
+  --bckgrd-color: rgb(240, 240, 240);
+}
+
 * {
+  padding: 0;
+  margin: 0;
   box-sizing: border-box;
 }
 
 body {
+  background-color: var(--bckgrd-color);
   font-family: sans-serif;
+  position: absolute;
+  width: 100%;
+  max-width: 1000px;
+  min-width: 300px;
+  border: none;
+}
+
+section {
+  margin-bottom: 30px;
+}
+
+ul, ol {
+  margin-left: 15px;
+}
+
+li {
+  padding: 5px 0px;
+}
+
+ul li {
+  list-style-type: none;
 }
 
 #navbar {
-  height: 100%;
-  width: 30%;
+  background-color: var(--bckgrd-color);
+  height: 100vh;
+  width: 25%;
+  min-width: 100px;
+  max-width: 530px;
   position: fixed;
-  padding: 0;
-  margin: 0;
   top: 0;
   left: 0;
   border: none;
 }
 
-#navbar a, #navbar header {
-  padding: 40px 10px;
+#navbar header {
+  font-size: calc(100% * 2);
+  padding: 30px 10px;
 }
 
 #navbar a {
+  font-size: 1.1rem;
+  padding: calc(100% / 11) 10px;
   display: block;
   text-decoration: none;
   color: black;
@@ -32,19 +64,143 @@ body {
 }
 
 #main-doc {
-  position: absolute;
-  width: 65%;
+  line-height: 1.4;
+  position: relative;
+  width: 60%;
+  min-width: 200px;
   padding: 5px;
   top: 0;
-  left: 31%;
+  left: 0;
+  margin-left: 31%;
   border: none;
 }
 
-header {
+#navbar header {
   font-size: 40px;
+}
+
+.main-section header {
+  padding: 10px 0px;
+  font-size: 30px;
+  font-weight: 700;
 }
 
 .block-code {
   display: block;
   padding-left: 10px;
+  overflow: scroll;
+  margin: 15px 0px;
+  padding: 5px;
+  background-color: rgb(250, 240, 250);
+  border-radius: 2px;
+}
+
+code {
+  font-size: 15px;
+}
+
+code:not(.block-code) {
+  background-color: lightgray; 
+  border-radius: 2px;
+  padding: 2px;
+}
+
+.main-section a {
+  text-decoration: none;
+  color: rgb(0, 133, 235);
+}
+
+.main-section a:hover {
+  text-decoration: none;
+  color: blue;
+}
+
+table {
+  border-collapse: collapse;
+  width: 80%;
+  margin: 20px auto; 
+  text-align: center;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+th, td {
+  padding: 5px; 
+}
+
+#table-column-1 {
+  width: 25%;
+}
+
+#table-column-2 {
+  width: 25%;
+}
+
+@media screen and (min-width: 900px) {
+  #navbar a {
+    font-size: 1.5rem;
+  }
+
+  #navbar {
+    width: 25%;
+  }
+
+  #main-doc {
+    width: 70%;
+  }
+
+  #navbar header, #navbar a {
+    padding: calc(100% / 20) 10px;
+  }
+}
+
+@media screen and (max-width: 530px) {
+  table {
+    width: 100%;
+  }
+
+  #navbar header {
+    font-size: 2rem;
+    padding: 20px;
+    margin-bottom: 0px;
+  }
+
+  #navbar {
+    font-size: 1.2rem;
+    width: 100%;
+    height: 30vh;
+    overflow: scroll;
+    text-align: center;
+    z-index: 2;
+    border-right: none;
+    border-bottom: solid black 1px;
+  }
+
+  #navbar a {
+    font-size: 22px;
+    padding: 6px;
+  }
+
+  #navbar a:last-of-type {
+    margin-bottom: 20px;
+  }
+
+  #main-doc {
+    position: fixed;
+    overflow: scroll;
+    width: 100%;
+    margin-top: 30vh;
+    margin-left: 0;
+    height: 70%;
+    padding: 10px;
+    z-index: 1;
+    border: none;
+  }
+
+  #main-doc p, code {
+    font-size: 18px;
+  }
+
 }

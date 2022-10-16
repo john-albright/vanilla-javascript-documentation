@@ -3,71 +3,201 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Technical Documentation Page: </title>
+    <title>Technical Documentation Page: Vanilla JavaScript</title>
     <link href="./styles.css" rel="stylesheet">
+    <script type="text/javascript" src="index.js" charset="UTF-8"></script>
   </head>
-  <body>
+  <body style="font-family: sans-serif">
     <nav id="navbar">
       <header>Vanilla JavaScript</header>
-      <a href="#section-1" class="nav-link">Introduction</a>
-      <a href="#section-2" class="nav-link">Selectors</a>
-      <a href="#section-3" class="nav-link">Element Class</a>
-      <a href="#section-4" class="nav-link">Event Listeners/a>
-      <a href="#section-5" class="nav-link">Modifying Class</a>
+      <a href="#introduction" class="nav-link">Introduction</a>
+      <a href="#setup" class="nav-link">Setup</a>
+      <a href="#selectors" class="nav-link">Selectors</a>
+      <a href="#accessing_properties" class="nav-link">Accessing Properties</a>
+      <a href="#modifying_class" class="nav-link">Modifying Class</a>
+      <a href="#modifying_styles" class="nav-link">Modifying Styles</a>
+      <a href="#event_listeners" class="nav-link">Event Listeners</a>
     </nav>
     <main id="main-doc">
-      <section class="main-section" id="section-1">
-        <h1>Introduction</h1>
+      <section class="main-section" id="introduction">
+        <header>Introduction</header>
         <p>
-          Vanilla JavaScript refers to pure JavaScript code that is used for the client-side of web
-          programs. This was JavaScript's original purpose when it was adopted by Internet Explorer
-          in 1995: to breathe life into static HTML pages. 
-          This all changed, however, in 2009 when Node.js was created, allowing JavaScript to be used
-          to write back-end code. Many frameworks have since been created to solve the many challenges
-          that have arisen in web development. Some notable front-end frameworks and libraries have been 
-          built to help create easily scalable applications, most notably <a href="https://jquery.com/">jQuery</a>, 
-          <a href="https://reactjs.org/">React.js</a>, and <a>Angular.js</a>. 
-          Back-end frameworks and libraries have also been created more recently, e.g. 
-          <a href="https://expressjs.com/">Express.js</a>, <a href="https://nextjs.org/">Next.js</a>,
-          and <a href="https://www.gatsbyjs.com/">Gatsby.js</a>. 
+          Vanilla JavaScript refers to pure JavaScript</a> code that is used for the client-side of web programs. This was JavaScript's original purpose when it was adopted by Internet Explorer in 1995: to breathe life into static HTML pages. This all changed, however, in 2009 when Node.js was created, allowing JavaScript to be used to write back-end code. Many frameworks have since been created to solve the many challenges that have arisen in web development. Some notable front-end frameworks and libraries have been built to help create easily scalable applications, most notably <a href="https://jquery.com/" target="_blank">jQuery</a>, <a href="https://reactjs.org/" target="_blank">React.js</a>, and <a href="https://angular.io/" target="_blank">Angular.js</a>. Back-end frameworks and libraries have also been created more recently, e.g. <a href="https://expressjs.com/" target="_blank">Express.js</a>, <a href="https://nextjs.org/" target="_blank">Next.js</a>, and <a href="https://www.gatsbyjs.com/" target="_blank">Gatsby.js</a>. 
         </p>
         <p>
-          Despite all the innovations made, pure JavaScript code (Vanilla JS) can be written to directly
-          manipulate elements in the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction">Document Object Model (DOM)</a>, 
-          a programming interface for web documents. As implied by the name, all web pages are organized 
-          into objects that can be manipulated directly using a programming language like JavaScript, a language
-          that supports object-oriented programming.
+          While there are many cutting edge frameworks, many opt to use pure JavaScript code (Vanilla JS) to directly manipulate elements in the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction" target="_blank"> Document Object Model (DOM)</a>, a programming interface for web documents. As implied by the name, all web pages are organized into objects that can be manipulated directly using a programming language like JavaScript, a language that supports object-oriented programming. To read more about JavaScript as a programming language, refer to <a href="https://technical-documentation-page.freecodecamp.rocks/" target="_blank">freeCodeCamp's technical documentation</a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/About_JavaScript" target="_blank">Mozilla's JavaSript documentation</a>.
         </p>
       </section>
-      <section class="main-section" id="section-2">
-        <h1>Selectors</h1>
+      <section class="main-section" id="setup">
+        <header>Setup</header>
         <p>
-          To dynamically manipulate web page, e.g. changing a div's contents upon pressing a button, 
-          an element of an HTML document must first be selected. There are a few methods for selecting 
-          documents. The first uses an objects class, id, or tag name. They are as follows:
+          To add javascript to an HTML document, valid JavaScript code can be placed within the following HTML tags:
         </p>
-        <code class="block-code">document.getElementById(<em>idName</em>)</code>
-        <code class="block-code">document.getElementsByClass(<em>className</em>)</code>
-        <code class="block-code">document.getElementsByTagName(<em>className</em>)</code>
+        <code class="block-code">&lt;script type="text/javascript"&gt;&lt;/script&gt;</code>
         <p>
-          The first method selects an <code>Element</code> object while the latter two return a list 
-          of <code>Element</code> objects. 
+          If one wants to write javascript code in a separate document, an <code>href</code> attribute can be added to the 
+          script tag. If in the same directory, prefix the file name with <code>./</code>. If in another directory, use <code>../</code> to go back to the parent directory and <code>/</code> to get to the root of the current drive. See below for an example of linking a JavaScript file called 'index.js' that's in the same directory as the HTML page. 
+        </p>
+        <code class="block-code">&lt;script type="text/javascript" href="./index.js"&gt;&lt;/script&gt;</code>       
+        <p>
+          Keep in mind that the order of the placement of this tag matters within the HTML document. If placed before the body elements, any elements in the body selected in the JavaScript file cannot be manipulated (as they haven't been declared yet). To not have to put the script tags after the html file, the Document event listener <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/DOMContentLoaded_event" target="_blank"><code>DOMContentLoaded</code></a> can be called first and all JavaScript code can be nested inside.
+        </p>
+        <code class="block-code">
+          document.addEventListener('DOMContentLoaded', function() { <br /><br />});
+          </pre>
+        </code>
+      </section>
+      <section class="main-section" id="selectors">
+        <header>Selectors</header>
+        <p>
+          To dynamically manipulate web page, e.g. changing a div's contents upon pressing a button, an element of an HTML document must first be selected. There are a few methods for selecting documents. The first uses an object's class, id, or tag name. They are as follows:
+        </p>
+        <code class="block-code">
+          Document.getElementById(<em>idName</em>)
+          <br />
+          Document.getElementsByClassName(<em>className</em>)
+          <br />
+          Document.getElementsByTagName(<em>tagName</em>)
+        </code>
+        <p>
+          The first method in the list returns an <code>Element</code> object while the latter two return an <code>HTMLCollection</code> (array-like object) of <code>Element</code> objects. These methods can only be used on the global <code>document</code> object. This means that the methods cannot be used on other objects that are within the document, e.g. a div element or a paragraph element. 
         </p>
         <p>
-          The second method 
+          A second set of methods take CSS selectors as arguments to select elements in the DOM:
+        </p>
+        <code class="block-code">
+          Document.querySelector(<em>selector</em>)
+          <br />
+          Document.querySelectorAll(<em>selector</em>)
+        </code>
+        <p>
+          The first method in the list returns the first <code>Element</code> object while the latter returns an <code>HTMLCollection</code> of of <code>Element</code> objects. These methods can be used on <em>all</em> objects in the DOM. 
+        </p>
+        <p>
+          Here are some examples of code that could be used to select elements on this webpage.
+        </p>
+        <code class="block-code">document.querySelectorAll('#navbar a')<br />
+        document.getElementsByClassName('block-code')<br />
+        document.getElementById('navbar').querySelectorAll('a')</code>
+        <p>
+          The <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document" target="_blank"><code>Document</code> class</a>, which implements the <code>Node</code> and the <code>EventTarget</code> interfaces. 
         </p>
       </section>
-      <section class="main-section" id="section-3">
-        <h1>Element Class</h1>
-        <p></p>
+      <section class="main-section" id="accessing_properties">
+        <header>Accessing Properties</header>
+        <p>
+          The <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" target="_blank"><code>Element</code> class</a> is the most basic class from which all the elements in the DOM inherit. The class itself inherits from the <code>Node</code> interface, which itself inherits from the <code>EventTarget</code> interface. There are a series of properties of the <code>Element</code> class that can be accessed, some of which are read-only and others which are mutable.
+        </p>
+        <p>
+          Below is a sample of read-only properties that can be accessed within the <code>Element</code> class.
+        </p>
+        <ul>
+          <li><code>Element.children</code></li>
+          <li><code>Element.classList</code></li>
+          <li><code>Element.nextElementSibling</code></li>
+          <li><code>Element.tagName</code></li>
+          <li><code>Element.classList</code></li>
+        </ul>
+        <p>
+          Below is a sample of mutable properties that can be accessed within the <code>Element</code> class.
+        </p>
+        <ul>
+          <li><code>Element.className</code></li>
+          <li><code>Element.id</code></li>
+          <li><code>Element.innerHTML</code></li>
+          <li><code>Element.outerHTML</code></li>
+        </ul>
+        <p>
+          Element.innerHTML is particularly useful when needing to change the contents of an HTML element. Oftentimes, this will select the text of an element. However, if the element is a complex group of nested elements, the <code>Node.textContent</code> property from the <code>Node</code>  interface can be used. <code></code>Element.outerHTML selects the contents of the HTML element  and the tags which define the element itself.
+        </p>
+        <p>
+          Refer to the Mozilla documentation on the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node" target="_blank"><code>Node</code> interface</a> and the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" target="_blank"><code>Element</code> class</a> to see other methods and properties available when selecting HTML elements, which are children of the <code>Node</code> class.
+        </p>
+        <p>
+          As noted in the <a href="#selectors">previous section</a>, when multiple elements within the DOM are selected, i.e. with <code>Document.querySelectorAll()</code> or <code>Document.getElementsByClassName()</code>, an <code>HTMLCollection</code> is returned. Instances of the <code>HTMLCollection</code> have very limited functionality. As noted in the <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLCollection" target="_blank">HTMLCollection Mozilla documentation</a>, the class only has 1 property and 2 methods. It can be helpful to use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from" target="_blank"><code>Array.from()</code></a> to transform this iterable object into an <code>Array</code> in order to take advantage of the large functionality of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank"><code>Array</code> class</a>.
+        </p>
       </section>
-      <section class="main-section" id="section-4">
-        <h1>Event Listeners</h1>
-        <p></p>
+      <section class="main-section" id="modifying_class">
+        <header>Modifying Class</header>
+        <p>
+          In the <a href="#accessing_properties">Accessing Properties</a> section, one can predict that the properties <code>classList</code> and <code>className</code> must be similar. The former is immutable (read-only) while the second one is mutable. This means that the <code>classList</code> property cannot be set to any value and be changed. While the property <code>className</code> can be set to a value, all potential classes of an element will be replaced by whatever string is entered.
+        </p>
+        <p>
+          To add a class to an element without getting rid of other classes associated with an element, use the <code>DOMTokenList</code> method <code>add()</code> on the returned value of <code>Element.classList</code>. Similarly, the methods <code>remove()</code>, <code>replace()</code>, and <code>toggle()</code> are also available to instances of the <a href="https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList" target="_blank"><code>DOMTokenList</code> class</a>.
+        </p>
+        <p>
+          Some other methods available may look familiar. Those who have worked with the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank"><code>Array</code> class</a> may recognize the <code>forEach()</code> method. Similarly, the methods <code>entries()</code>, <code>keys()</code>, and <code>values()</code> seem to match up with the built-in JavaScript type <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" target="_blank"><code>Object</code></a>.
+        </p>
       </section>
-      <section class="main-section" id="section-5">
-        <h1>Modifying Class</h1>
-        <p></p>
+      <section class="main-section" id="modifying_styles">
+        <header>Modifying Styles</header>
+        <p>
+          There are a few ways to modify styles using JavaScript. All require a <a href="https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration" target="_blank"><code>CSSStyleDeclaration</code></a> object to be exposed. They are as follows:
+        </p>
+        <ol>
+          <li><code>HTMLElement.style</code></li>
+          <li>The <code>CSSStyleSheet</code> API, e.g. <a href="https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet/cssRules" target="_blank"><code>CSSStyleSheet.cssRules</code></a></li>
+          <li><code>Window.getComputedStyle()</code></li>
+        </ol>
+        <p>
+          The simplest and most common way to access the styles is probably the first. The return value is a <code>CSSStyleDeclaration</code> object with keys representing CSS properties mapped to their respective values. However, keep in mind that this way only reveals the inline styles, that is, the styles applied to HTML tags directly using the <code>style</code> attribute. Since JavaScript is compiled differently from CSS, the CSS properties are converted such that the dashes are removed and <a href="https://en.wikipedia.org/wiki/Camel_case" target="_blank">camel case</a> is applied. For example, in JavaScript, the CSS property <code>background-color</code> is converted to <code>backgroundColor</code> and <code>border-bottom-color</code> is converted to <code>borderBottomColor</code>. Refer to <a href="https://www.w3schools.com/jsref/dom_obj_style.asp" target="_blank">W3 Schools HTML DOM Style Object</a> for more examples. 
+        </p>
+        <p>
+          To change the backgroundColor of the main section of this HTML page, the following statement can be executed.
+        </p>
+        <code class="block-code">document.getElementById('main-section').style.backgroundColor = 'yellow'; </code>
+        <p>
+          When using the second way to expose the styles, a <code>DOMExceptionError</code> may be thrown as accessing a stylesheet loaded from the local filesystem violates a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" target="_blank">CORS policy</a>. Below is an example of the code that would be used to reveal the first CSS rule in the document's first style sheet. 
+        </p>
+        <code class="block-code">document.styleSheets[0].cssRules[0].style</code>
+        <p>
+          The final way to expose the styles takes the information directly from the window after applying the styles and calculating any values that must be calculated. Here is some sample code that can be used to select the <code>color</code> property of the : 
+        </p>
+        <code class="block-code">window.getComputedStyle(document.querySelectorAll('.main-section')).getPropertyValue('color');</code>
+      </section>
+      <section class="main-section" id="event_listeners">
+        <header>Event Listeners</header>
+        <p>
+          As mentioned earlier, the <code>Node</code> interface inherits from the <code>EventTarget</code> interface. This means that all methods available to <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget" target="_blank"><code>EventTarget</code></a> are available to instances of the <code>Element</code> class. This means that the methods <code>addEventListener()</code>, <code>removeEventListener()</code>, and <code>dispatchEvent()</code> can be used on HTML elements selected in the DOM.
+        </p>
+        <p>
+          This means that an element can "listen" for a particular event to trigger a change written in JavaScript code. These changes can be much more detailed than any that could be written using CSS. The 2 required parameters of the <code>addEventListener()</code> method are <code>type</code> followed by the <code>listener</code>, which will be some type of function trigged once an event of that type occurs. Below is a table of common event types that are associated with the <code>Element</code> class. Refer to the <a href="https://developer.mozilla.org/en-US/docs/Web/Events" target="_blank">Mozilla event reference</a> for a full list.  
+        </p>
+        <table>
+          <tr>
+            <th id="table-column-1">Event</th>
+            <th id="table-column-2">Event Type</th>
+            <th id="table-column-3">Event Description</th>
+          </tr>
+          <tr>
+            <td><code>click</code></td>
+            <td><code>MouseEvent</code></td>
+            <td>A <code>click</code> event fires when a pointing device is pressed (a <code>mousedown</code> event) and released (a <code>mouseup</code> event) while the pointer is inside the element</td>
+          </tr>
+          <tr>
+            <td><code>mousedown</code></td>
+            <td><code>MouseEvent</code></td>
+            <td>A <code>mousedown</code> event fires when a pointing device is pressed (but not necessarily released) while the pointer is inside the element</td>
+          </tr>
+          <tr>
+            <td><code>mouseover</code></td>
+            <td><code>MouseEvent</code></td>
+            <td>A <code>mouseover</code> event fires when a pointing device is used to move the cursor onto an element or its children</td>
+          </tr>
+          <tr>
+            <td><code>keydown</code></td>
+            <td><code>KeyboardEvent</code></td>
+            <td>A <code>keydown</code> event fires when a key is pressed even if it doesn't produce a character value; it's an updated version of the <code>keypress</code> event</td>
+          </tr>
+          <tr>
+            <td><code>select</code></td>
+            <td><code>Event</code></td>
+            <td>A <code>select</code> event fires when text is selected, i.e. highlighted</td>
+          </tr>
+        </table>
+        <p>
+          As can be seen in the table, events are grouped by type. Just like with HTML elements, events have properties that can also be accessed and modified using JavaScript. For events of type <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event" target="_blank"><code>KeyboardEvent</code></a>, it's common to want to access the <code>code</code> property. For example, pressing 'a' will trigger a <code>keydown</code> event with a <code>code</code> property of 61. For events of type <a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent" target="_blank"><code>MouseEvent</code></a>, it's common to want to access the coordinates of the event. The properties <code>x</code> and <code>y</code> will return the coordinates within the whole document while the properties <code>pageX</code> and <code>pageY</code> will return the coordinates relative to the whole document. 
+        </p>
       </section>
     </main>
   </body>
