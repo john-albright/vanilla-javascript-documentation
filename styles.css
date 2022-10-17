@@ -51,7 +51,7 @@ ul li {
   padding: 30px 10px;
 }
 
-#navbar a {
+.nav-link {
   font-size: 1.1rem;
   padding: calc(100% / 11) 10px;
   display: block;
@@ -59,7 +59,7 @@ ul li {
   color: black;
 }
 
-#navbar a:hover {
+.nav-link:hover {
   color: gray;
 }
 
@@ -151,7 +151,7 @@ th, td {
     width: 70%;
   }
 
-  #navbar header, #navbar a {
+  #navbar header, .nav-link {
     padding: calc(100% / 20) 10px;
   }
 }
